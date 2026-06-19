@@ -1,0 +1,108 @@
+# careers :
+# 1. AI Engineer
+# 2. Data Scientist
+# 3. Web Developer
+# 4. UI/UX Designer
+# 5. Business Analyst
+
+
+# Questions to Ask
+def questions():
+    print("Welcome to the Career Recommendation System!")
+    print("Please answer the following questions to find out which career suits you best, answer in yes/no.")
+    
+    q1 = input("Do you enjoy working with data? : ").lower()
+    q2 = input("Do you enjoy Mathematics? : ").lower()
+    q3 = input("Do you like programming and building applications? : ").lower()
+    q4 = input("Are you interested in artificial intelligence and machine learning? : ").lower()
+    q5 = input("Do you enjoy statistics? : ").lower()
+    q6 = input("Do you enjoy solving business problems and making strategic decisions? : ").lower()
+    q7 = input("Do you enjoy designing interface? : ").lower()
+    
+    return q1, q2, q3, q4, q5, q6, q7   
+
+# Variables
+
+AI_Engineer_Score = 0
+Data_Scientist_Score = 0
+Web_Developer_Score = 0
+UIUX_Designer_Score = 0
+Business_Analyst_Score = 0
+
+
+# Weight Assignment Logic
+def weight_assignment(q1, q2, q3, q4, q5, q6, q7):
+    global AI_Engineer_Score, Data_Scientist_Score, Web_Developer_Score, UIUX_Designer_Score, Business_Analyst_Score
+    
+    if q1 == 'yes':
+        Data_Scientist_Score += 2
+        AI_Engineer_Score += 1
+        Business_Analyst_Score += 1
+        
+    if q2 == 'yes':
+        Data_Scientist_Score += 2
+        AI_Engineer_Score += 2
+        
+    if q3 == 'yes':
+        Web_Developer_Score += 2
+        AI_Engineer_Score += 1
+        
+    if q4 == 'yes':
+        AI_Engineer_Score += 3
+        Data_Scientist_Score += 2
+        
+    if q5 == 'yes':
+        Data_Scientist_Score += 2
+        Business_Analyst_Score += 1
+        
+    if q6 == 'yes':
+        Business_Analyst_Score += 3
+        
+    if q7 == 'yes':
+        UIUX_Designer_Score += 3
+        
+# Recomendation Logic
+def recommendation():
+    
+    scores = {
+        "AI Engineer": AI_Engineer_Score,
+        "Data Scientist": Data_Scientist_Score,
+        "Web Developer": Web_Developer_Score,
+        "UI/UX Designer": UIUX_Designer_Score,
+        "Business Analyst": Business_Analyst_Score
+    }
+    
+    recommended_career = max(scores, key=scores.get)
+    print(f"\nBased on your answers, the recommended career for you is: {recommended_career}")
+    return recommended_career
+    
+# Show Reason
+def show_reason(recommended_career):
+    
+    print("\nReason for Recommendation:")
+    
+    if recommended_career == "AI Engineer":
+        print("You have a strong interest in artificial intelligence and machine learning, and you enjoy working with data and programming.")
+        
+    elif recommended_career == "Data Scientist":
+        print("You enjoy working with data, mathematics, and statistics, which are essential skills for a Data Scientist.")
+        
+    elif recommended_career == "Web Developer":
+        print("You like programming and building applications, which are key aspects of web development.")
+        
+    elif recommended_career == "UI/UX Designer":
+        print("You enjoy designing interfaces, which is crucial for a career in UI/UX design.")
+        
+    elif recommended_career == "Business Analyst":
+        print("You enjoy solving business problems and making strategic decisions, which are important skills for a Business Analyst.")
+
+
+q1, q2, q3, q4, q5, q6, q7 = questions()
+
+weight_assignment(q1, q2, q3, q4, q5, q6, q7)
+
+career = recommendation()
+
+show_reason(career)
+
+print("\nThankyou for using the Career Recommendation System!")
